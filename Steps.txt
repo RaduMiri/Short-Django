@@ -1,0 +1,32 @@
+0) pip install django --user
+0.1) to run the server when you need run python manage.py runserver
+1) python -m django startproject (project_name)
+2.0) In settings.py, installed apps add '(app_name)'
+2) cd (project_name)
+   python manage.py startapp (app_name)
+3) in the app folder, in views.py define the views you need as functions
+4) create the urls for them making a urls.py, name the views whatever
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name = 'home')
+]
+5) Create the path with the urls
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls), #This is here by default
+    path('(prefix/)', include('myapp.urls')) #(prefix/) is what prefix you want for this app to call using the urls
+]
+6) Create templates folder in the app folder and use jinja templates. Don't forget to render the templates in views
+Models and database
+7) In models.py declare models
+8) Then register them in admin.py
+9.0) You need to do this everythime you want to change the db
+9) run python manage.py makemigrations #to make the models in the db
+9.1) python manage.py migrate #applies the migrations and changes the db
+Bonus 10) To quickly and easily work with the db you can use the django admin
+with the server running go to  (the url)/admin
+If you haven't first create a superuser by running python manage.py createsuperuser
+And then login
